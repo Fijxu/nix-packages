@@ -17,4 +17,5 @@
   overlays = import ./overlays; # nixpkgs overlays
 
   spcplay-bin = pkgs.callPackage ./pkgs/spcplay { };
+  openmpt-bin = pkgs.callPackage ./pkgs/openmpt { };
 }
