@@ -7,7 +7,7 @@
   icoutils,
   imagemagick,
   wineWow64Packages,
-  winePackage ? wineWow64Packages.stable,
+  winePackage ? wineWow64Packages.stagingFull,
 }:
 
 let
@@ -17,8 +17,8 @@ let
     description = "SNES SPC700 Player";
   };
   desktopItem = makeDesktopItem {
-    desktopName = pname;
-    name = pname;
+    desktopName = package.name;
+    name = package.name;
     exec = "${pname}";
     icon = pname;
     comment = package.description;
@@ -30,7 +30,7 @@ let
       "Music"
       "AudioVideo"
     ];
-    genericName = pname;
+    genericName = package.name;
   };
 in
 stdenv.mkDerivation rec {
