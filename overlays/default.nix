@@ -1,8 +1,9 @@
+{ self }:
 {
   default = final: prev: {
-    haproxy-ech = final.callPackage ../pkgs/haproxy-ech { };
-    openssl-ech = final.callPackage ../pkgs/openssl-ech { };
-    openmpt-bin = final.callPackage ../pkgs/openmpt { };
-    spcplay-bin = final.callPackage ../pkgs/spcplay { };
+    haproxy-ech = self.legacyPackages.${final.system}.haproxy-ech;
+    openssl-ech = self.legacyPackages.${final.system}.openssl-ech;
+    openmpt-bin = self.legacyPackages.${final.system}.openmpt-bin;
+    spcplay-bin = self.legacyPackages.${final.system}.spcplay-bin;
   };
 }

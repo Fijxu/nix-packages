@@ -7,7 +7,12 @@
   };
 
   outputs =
-    { self, nixpkgs, ... }:
+    {
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      ...
+    }:
     let
       forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
     in
@@ -16,6 +21,7 @@
         system:
         import ./default.nix {
           pkgs = import nixpkgs { inherit system; };
+          pkgsUnstable = import nixpkgs-unstable { inherit system; };
         }
       );
 
@@ -23,7 +29,7 @@
         system: nixpkgs.lib.filterAttrs (_: v: nixpkgs.lib.isDerivation v) self.legacyPackages.${system}
       );
 
-      overlays = import ./overlays;
+      overlays = import ./overlays { inherit self; };
 
       devShells = forAllSystems (
         system:

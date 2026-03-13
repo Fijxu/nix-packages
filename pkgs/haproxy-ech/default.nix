@@ -1,5 +1,4 @@
 {
-
   haproxy,
   fetchFromGitHub,
   pkgs,
@@ -21,8 +20,8 @@ in
   openssl = openssl-ech;
 }).overrideAttrs
   (old: {
-    version = tag;
-    inherit src;
+    # version = tag;
+    # inherit src;
     buildFlags = old.buildFlags ++ [ "USE_ECH=1" ];
     env.NIX_CFLAGS_COMPILE = "-march=x86-64-v3 -flto=auto";
   })

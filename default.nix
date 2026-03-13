@@ -8,6 +8,7 @@
 
 {
   pkgs ? import <nixpkgs> { },
+  pkgsUnstable ? import <nixpkgs-unstable> { },
 }:
 
 {
@@ -18,6 +19,6 @@
 
   spcplay-bin = pkgs.callPackage ./pkgs/spcplay { };
   openmpt-bin = pkgs.callPackage ./pkgs/openmpt { };
-  haproxy-ech = pkgs.callPackage ./pkgs/haproxy-ech { };
+  haproxy-ech = pkgsUnstable.callPackage ./pkgs/haproxy-ech { };
   openssl-ech = pkgs.callPackage ./pkgs/openssl-ech { };
 }
